@@ -11,6 +11,7 @@ import {User} from '../../shared/interfaces';
 })
 export class LoginPageComponent implements OnInit {
   form: FormGroup;
+  submited = false;
 
   constructor(
     private auth: AuthService,
@@ -35,14 +36,18 @@ export class LoginPageComponent implements OnInit {
       return;
     }
 
+    this.submited = true;
+
     const user: User = {
       email: this.form.value.email,
-      password: this.form.value.password
-    }
+      password: this.form.value.password,
+      returnSecureToken: true
+    };
 
     this.auth.login(user).subscribe(() => {
       this.form.reset();
       this.router.navigate(['/admin', 'dashboard']);
+      this.submited = false;
     });
   }
 
