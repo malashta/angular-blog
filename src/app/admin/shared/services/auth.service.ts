@@ -6,7 +6,7 @@ import {environment} from '../../../../environments/environment';
 import {catchError, tap} from 'rxjs/operators';
 import {DatePipe} from '@angular/common';
 
-@Injectable()
+@Injectable({providedIn: true})
 export class AuthService {
 
   public error$: Subject<string> = new Subject<string>();
