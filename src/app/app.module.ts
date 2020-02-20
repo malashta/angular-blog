@@ -10,7 +10,6 @@ import { PostComponent } from './shared/components/post/post.component';
 import {SharedModule} from './shared/shared.module';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptor} from './shared/auth.interceptor';
-import {AuthService} from './admin/shared/services/auth.service';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -31,7 +30,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppRoutingModule,
     SharedModule
   ],
-  providers: [INTERCEPTOR_PROVIDER, AuthService],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
