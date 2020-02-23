@@ -12,7 +12,7 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   create(post: Post): Observable<Post> {
-    return this.http.post(`https://angular-blog-1392d.firebaseio.com/posts.json`, post)
+    return this.http.post(`${environment.fbDbUrl}/posts.json`, post)
       .pipe(map((res: FbCreateResponse) => {
         return {
           ...post,
@@ -34,5 +34,9 @@ export class PostService {
               date: new Date(response[key].date)
             }));
     }));
+  }
+
+  remove(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${id}.json`);
   }
 }
