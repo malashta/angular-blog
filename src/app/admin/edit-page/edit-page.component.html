@@ -23,7 +23,7 @@
     <button
       class="btn btn-primary"
       type="submit"
-      [disabled]="editForm.invalid"
+      [disabled]="editForm.invalid || submited"
     >Обновить</button>
   </form>
 </div>

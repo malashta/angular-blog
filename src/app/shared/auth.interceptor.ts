@@ -23,9 +23,6 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     return next.handle(req)
       .pipe(
-        tap(() => {
-          console.log('Intercept');
-        }),
         catchError((err: HttpErrorResponse) => {
           if (err.status === 401) {
             this.auth.logout();
