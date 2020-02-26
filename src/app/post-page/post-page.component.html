@@ -1,19 +1,22 @@
-<div class="post">
-  <div class="header">
-    <h1>Post title</h1>
+<div *ngIf="post$ | async as post; else loading">
+  <div class="post">
+    <div class="header">
+      <h1>{{ post.title }}</h1>
 
-    <button routerLink="/" class="btn btn-link"> On home</button>
-  </div>
+      <button routerLink="/" class="btn btn-link"> On home</button>
+    </div>
 
-  <div class="info">
-    <strong>author</strong>
-    <small>12.02.2020</small>
-  </div>
+    <div class="info">
+      <strong>{{ post.author }}</strong>
+      <small>{{ post.date | date: 'medium' : null : 'ru' }}</small>
+    </div>
 
-  <div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci deserunt dignissimos dolor dolorum eligendi eum excepturi expedita illum iusto nemo nisi, nobis nulla obcaecati odit officia quibusdam quis quos tempora vel velit. Ad asperiores commodi consequatur, culpa, dolores exercitationem impedit laudantium, nostrum numquam perferendis recusandae sed tempore? Fugit, iste, voluptatum!</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci deserunt dignissimos dolor dolorum eligendi eum excepturi expedita illum iusto nemo nisi, nobis nulla obcaecati odit officia quibusdam quis quos tempora vel velit. Ad asperiores commodi consequatur, culpa, dolores exercitationem impedit laudantium, nostrum numquam perferendis recusandae sed tempore? Fugit, iste, voluptatum!</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci deserunt dignissimos dolor dolorum eligendi eum excepturi expedita illum iusto nemo nisi, nobis nulla obcaecati odit officia quibusdam quis quos tempora vel velit. Ad asperiores commodi consequatur, culpa, dolores exercitationem impedit laudantium, nostrum numquam perferendis recusandae sed tempore? Fugit, iste, voluptatum!</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci deserunt dignissimos dolor dolorum eligendi eum excepturi expedita illum iusto nemo nisi, nobis nulla obcaecati odit officia quibusdam quis quos tempora vel velit. Ad asperiores commodi consequatur, culpa, dolores exercitationem impedit laudantium, nostrum numquam perferendis recusandae sed tempore? Fugit, iste, voluptatum!</p>
+    <div>
+      <quill-view-html [content]="post.title"></quill-view-html>
+    </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <p>Загрузка поста...</p>
+</ng-template>
